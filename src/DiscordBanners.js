@@ -41,7 +41,8 @@ class DiscordBanners {
                 .then(user => {
                     if (user.code == 50035) throw new SyntaxError("User not found.")
                     if (user.banner !== null) Data = this.createBannerURL(user.id, user.banner, format, size, dynamic)
-                    if (user.banner_color !== null) Data = user.banner_color
+                    if (user.banner === null && user.banner_color !== null) Data = user.banner_color
+                    if (user.banner === null && user.banner_color === null ) throw new SyntaxError("User has no banner or banner color.");
                 })
         } catch (err) {
             throw new Error("An unexpected error occurred.");
